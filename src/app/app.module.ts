@@ -26,7 +26,10 @@ import {ApiService} from './api.service';
     HeroButtonComponent,
     ItemComponent,
     ListToggleComponent,
-    MainComponent
+    MainComponent,
+    MovieService,
+    MovieApiService,
+    ApiService
   ],
   imports: [
     BrowserModule,
