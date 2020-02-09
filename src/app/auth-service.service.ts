@@ -1,28 +1,33 @@
 import { Injectable, ɵSWITCH_COMPILE_NGMODULE__POST_R3__ } from '@angular/core';
 import { ApiService } from '../app/api.service';
-import { ɵangular_packages_platform_browser_platform_browser_d } from '@angular/platform-browser';
+import { Extractor } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 token: string;
+username: string;
+password: string;
 
-  constructor(private ApiService, ) { };
+  constructor(private apiService: ApiService ) { };
 
-  async signUp(ApiService) {
-    ApiService.get(this.logIn).toPromise;
+  async signUp(username, password) {
+    const data={username, password};
+    let response = this.apiService.post("auth/signup", data);
+    return Response;
   }
   
-  async logIn() {
-    const data={
-      username: "",
-      password: ""
-    };
-
+  async logIn(data) {
+    const jsondata = JSON.stringify(data);
+    await this.apiService.post("auth/login", jsondata);
+    const response = await this.apiService.post("auth/login", jsondata);
+    this.token= response.token;
+    localStorage.setItem('token', this.token);
+    console.log(this.token);
   };
 
-  get getToken() {
+  getToken() {
     return this.token;
   }
 }
